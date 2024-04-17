@@ -32,6 +32,7 @@ function App() {
     const action = { type: "deleteContact", payload: contactId };
     dispatch(action);
   };
+
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
