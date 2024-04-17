@@ -8,9 +8,10 @@ import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.items);
   console.log("contacts: ", contacts);
-  const filter = useSelector((state) => state.filters);
+  const filter = useSelector((state) => state.filters.name);
+  console.log("filter: ", filter);
 
   const onChangeFilter = (e) => {
     const action = { type: "setFilter", payload: e.target.value };
