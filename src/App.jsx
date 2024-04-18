@@ -9,12 +9,10 @@ import "./App.css";
 function App() {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
-  console.log("contacts: ", contacts);
   const filter = useSelector((state) => state.filters.name);
-  console.log("filter: ", filter);
 
   const onChangeFilter = (e) => {
-    const action = { type: "setFilter", payload: e.target.value };
+    const action = { type: "filtersSlice/setFilter", payload: e.target.value };
     dispatch(action);
   };
 
@@ -24,13 +22,12 @@ function App() {
 
   const onAddContact = (values) => {
     const finalContact = { ...values, id: nanoid() };
-    console.log("finalContact: ", finalContact);
-    const action = { type: "addContact", payload: finalContact };
+    const action = { type: "contactsSlice/addContact", payload: finalContact };
     dispatch(action);
   };
 
   const onDeleteContact = (contactId) => {
-    const action = { type: "deleteContact", payload: contactId };
+    const action = { type: "contactsSlice/deleteContact", payload: contactId };
     dispatch(action);
   };
 
