@@ -16,10 +16,6 @@ function App() {
     dispatch(action);
   };
 
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
   const onAddContact = (values) => {
     const finalContact = { ...values, id: nanoid() };
     const action = { type: "contactsSlice/addContact", payload: finalContact };
