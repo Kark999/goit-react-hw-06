@@ -1,10 +1,11 @@
-import { useEffect } from "react";
 import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
 import "./App.css";
+import { addContact, deleteContact } from "./redux/contactsSlice/contactsSlice";
+import { changeFilter } from "./redux/filtersSlice/filtersSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,19 +13,16 @@ function App() {
   const filter = useSelector((state) => state.filters.name);
 
   const onChangeFilter = (e) => {
-    const action = { type: "filtersSlice/setFilter", payload: e.target.value };
-    dispatch(action);
+    dispatch(changeFilter(e.target.value));
   };
 
   const onAddContact = (values) => {
     const finalContact = { ...values, id: nanoid() };
-    const action = { type: "contactsSlice/addContact", payload: finalContact };
-    dispatch(action);
+    dispatch(addContact(finalContact));
   };
 
   const onDeleteContact = (contactId) => {
-    const action = { type: "contactsSlice/deleteContact", payload: contactId };
-    dispatch(action);
+    dispatch(deleteContact(contactId));
   };
 
   const filteredContacts = contacts.filter((contact) =>
