@@ -3,11 +3,9 @@ import css from "./Contact.module.css";
 import { deleteContact } from "../../redux/contactsSlice/contactsSlice";
 
 const Contacts = ({ contact }) => {
-  console.log("contact: ", contact);
   const dispatch = useDispatch();
 
   const onDeleteContact = () => {
-    console.log(contact.id);
     dispatch(deleteContact(contact.id));
   };
 
